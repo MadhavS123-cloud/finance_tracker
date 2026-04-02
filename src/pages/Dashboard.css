@@ -1,0 +1,240 @@
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.dashboard-overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.overview-title {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.overview-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.overview-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.btn-tertiary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-tertiary:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-main);
+  border-color: var(--primary-light);
+}
+
+/* --- ASYMMETRICAL TOP METRICS CONFIGURATION --- */
+.top-metrics-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+.supporting-metrics-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Dashboard Hero Card */
+.dashboard-hero-card {
+  height: 100%;
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(99, 102, 241, 0.03) 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-2xl);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--primary) 0%, #818cf8 100%);
+}
+
+.dhc-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 60%;
+  position: relative;
+  z-index: 2;
+}
+
+.dhc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dhc-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.dhc-badge {
+  background-color: var(--success-bg);
+  color: var(--success);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.dhc-balance {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -2px;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.dhc-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.dhc-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+/* Abstract Wealth Indicator (Right Side Decor) */
+.dhc-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+}
+
+.abstract-wealth-indicator {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.awi-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.awi-ring.outer {
+  width: 100%;
+  height: 100%;
+  animation: pulse-ring 4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.awi-ring.inner {
+  width: 60%;
+  height: 60%;
+  border: 4px solid var(--primary-light);
+}
+
+.awi-center {
+  width: 64px;
+  height: 64px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 0 30px rgba(67, 56, 202, 0.4);
+  z-index: 2;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  50% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.8); opacity: 0.5; }
+}
+
+/* Main Grid below */
+.dashboard-main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: var(--spacing-lg);
+}
+
+@media (max-width: 1400px) {
+  .dashboard-main-grid,
+  .top-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .supporting-metrics-section {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 900px) {
+  .supporting-metrics-section {
+    flex-direction: column;
+  }
+  .dhc-left {
+    max-width: 100%;
+  }
+  .dhc-right {
+    display: none;
+  }
+  .dashboard-hero-card {
+    padding: var(--spacing-xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-overview-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+}
