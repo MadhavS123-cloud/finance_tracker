@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
-  AreaChart, Area, PieChart, Pie, Cell, BarChart, Bar, Legend
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
+  AreaChart, Area, PieChart, Pie, Cell, Legend
 } from 'recharts';
 import './Charts.css';
 
@@ -14,25 +14,34 @@ const ChartCard = ({ title, children, className }) => (
   </div>
 );
 
-const Charts = ({ balanceHistory, expenseByCategory, incomeVsExpenses }) => {
+const Charts = ({ balanceHistory, expenseByCategory }) => {
   return (
     <div className="charts-grid">
-      <ChartCard title="Balance Trend" className="span-2">
+      <ChartCard title="Balance Trend (Last 6 Months)" className="span-2">
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart data={balanceHistory}>
             <defs>
               <linearGradient id="colorBalance" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#4f46e5" stopOpacity={0.1}/>
-                <stop offset="95%" stopColor="#4f46e5" stopOpacity={0}/>
+                <stop offset="5%" stopColor="#00D4AA" stopOpacity={0.3}/>
+                <stop offset="95%" stopColor="#00D4AA" stopOpacity={0}/>
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-            <XAxis dataKey="month" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
-            <YAxis stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#2D4159" />
+            <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
+            <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(val) => `$${val/1000}k`} />
             <Tooltip 
-              contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+              contentStyle={{ 
+                borderRadius: '12px', 
+                border: '1px solid rgba(255,255,255,0.1)', 
+                backgroundColor: 'rgba(27, 42, 59, 0.8)', 
+                backdropFilter: 'blur(10px)',
+                color: '#fff', 
+                boxShadow: '0 20px 25px -5px rgba(0,0,0,0.5)' 
+              }}
+              itemStyle={{ color: '#00D4AA', fontWeight: 'bold' }}
+              cursor={{ stroke: '#00D4AA', strokeWidth: 2 }}
             />
-            <Area type="monotone" dataKey="balance" stroke="#4f46e5" fillOpacity={1} fill="url(#colorBalance)" strokeWidth={2} />
+            <Area type="monotone" dataKey="balance" stroke="#00D4AA" fillOpacity={1} fill="url(#colorBalance)" strokeWidth={3} />
           </AreaChart>
         </ResponsiveContainer>
       </ChartCard>
@@ -42,35 +51,28 @@ const Charts = ({ balanceHistory, expenseByCategory, incomeVsExpenses }) => {
           <PieChart>
             <Pie
               data={expenseByCategory}
-              innerRadius={60}
-              outerRadius={80}
+              innerRadius={70}
+              outerRadius={95}
               paddingAngle={5}
               dataKey="value"
+              stroke="none"
             >
               {expenseByCategory.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Pie>
-            <Tooltip />
-            <Legend verticalAlign="bottom" height={36}/>
-          </PieChart>
-        </ResponsiveContainer>
-      </ChartCard>
-
-      <ChartCard title="Income vs Expenses" className="span-2">
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={incomeVsExpenses}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-            <XAxis dataKey="month" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
-            <YAxis stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
             <Tooltip 
-              cursor={{fill: '#f1f5f9'}}
-              contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+              contentStyle={{ 
+                borderRadius: '12px', 
+                border: '1px solid rgba(255,255,255,0.1)', 
+                backgroundColor: 'rgba(27, 42, 59, 0.8)', 
+                backdropFilter: 'blur(10px)',
+                color: '#fff' 
+              }}
+              itemStyle={{ color: '#fff' }}
             />
-            <Legend verticalAlign="top" align="right" height={36}/>
-            <Bar dataKey="income" fill="#10b981" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="expenses" fill="#ef4444" radius={[4, 4, 0, 0]} />
-          </BarChart>
+            <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ color: '#94a3b8', fontSize: '12px' }}/>
+          </PieChart>
         </ResponsiveContainer>
       </ChartCard>
     </div>

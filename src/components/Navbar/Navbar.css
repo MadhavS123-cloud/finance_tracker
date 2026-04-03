@@ -1,0 +1,136 @@
+/* ── Premium Glassmorphism Navbar ── */
+
+.landing-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 48px;
+  background: rgba(13, 27, 42, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all var(--transition-smooth);
+}
+
+/* ── Logo ── */
+.landing-nav .logo-section {
+  flex-shrink: 0;
+}
+
+.landing-nav .logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+  transition: opacity var(--transition-fast);
+}
+
+.landing-nav .logo-text:hover {
+  opacity: 0.85;
+}
+
+/* ── Center Nav Links ── */
+.landing-nav .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.landing-nav .nav-links .nav-link {
+  position: relative;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.landing-nav .nav-links .nav-link:hover {
+  color: var(--text-main);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Underline accent on hover */
+.landing-nav .nav-links .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 20px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+  transition: transform var(--transition-smooth);
+}
+
+.landing-nav .nav-links .nav-link:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ── Auth Buttons ── */
+.landing-nav .nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.landing-nav .btn-signin {
+  padding: 8px 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.landing-nav .btn-signin:hover {
+  color: var(--text-main);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.landing-nav .btn-getstarted {
+  padding: 9px 22px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0D1B2A;
+  background: var(--primary);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 16px rgba(0, 212, 170, 0.2);
+  transition: all var(--transition-smooth);
+}
+
+.landing-nav .btn-getstarted:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(0, 212, 170, 0.35);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .landing-nav {
+    padding: 14px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .landing-nav .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 4px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .landing-nav .nav-auth {
+    margin-left: auto;
+  }
+}

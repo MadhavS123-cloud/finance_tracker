@@ -1,13 +1,13 @@
 .summary-card {
-  background-color: var(--bg-card);
+  background: linear-gradient(145deg, var(--bg-card), rgba(255, 255, 255, 0.02));
   border-radius: var(--radius-xl);
-  padding: var(--spacing-lg);
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
-  border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-spring), box-shadow var(--transition-spring), border-color var(--transition-smooth);
+  gap: 20px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.2);
+  transition: all var(--transition-spring);
   position: relative;
   overflow: hidden;
 }
@@ -26,92 +26,103 @@
 .summary-card.primary::before { background-color: var(--primary); }
 
 .summary-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--border-color); /* Kept subtle */
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.4);
+  border-color: var(--primary-light);
 }
 
 /* Header & Icon */
 .card-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .icon-container {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all var(--transition-smooth);
 }
 
-.icon-container.primary {
-  background-color: var(--primary-light);
-  color: var(--primary);
+.summary-card:hover .icon-container {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 212, 170, 0.1);
 }
 
-.icon-container.success {
-  background-color: var(--success-bg);
-  color: var(--success);
-}
-
-.icon-container.danger {
-  background-color: var(--danger-bg);
-  color: var(--danger);
-}
-
-.icon-container.warning {
-  background-color: var(--warning-bg);
-  color: var(--warning);
-}
+.icon-container.primary { background: linear-gradient(135deg, rgba(0, 212, 170, 0.15), rgba(0, 212, 170, 0.02)); color: var(--primary); border: 1px solid rgba(0, 212, 170, 0.1); }
+.icon-container.success { background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.02)); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.1); }
+.icon-container.danger { background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.02)); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.1); }
+.icon-container.warning { background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.02)); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.1); }
 
 /* Trend Badge */
 .trend-badge {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 4px 8px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 0.775rem;
+  font-weight: 700;
+  letter-spacing: -0.2px;
 }
 
 .trend-badge.positive {
-  background-color: var(--success-bg);
-  color: var(--success);
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.1);
 }
 
 .trend-badge.negative {
-  background-color: var(--danger-bg);
-  color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.1);
 }
 
 /* Body (Typography) */
 .card-body {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-top: 8px;
+  gap: 6px;
 }
 
 .card-title {
-  font-size: 0.9375rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
 }
 
 .card-amount {
-  font-size: 2.25rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: var(--text-main);
-  letter-spacing: -1px;
-  line-height: 1.1;
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+
+.card-sparkline {
+  margin: 0 -4px;
+  height: 60px;
 }
 
 /* Footer */
 .card-footer {
   font-size: 0.8125rem;
   color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: -12px;
+}
+
+.card-footer::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--border-color);
 }

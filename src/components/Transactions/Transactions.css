@@ -159,8 +159,9 @@
 }
 
 .transaction-row td {
-  padding: 16px 20px;
+  padding: 20px;
   vertical-align: middle;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
 }
 
 .merchant-info {
@@ -180,27 +181,28 @@
 
 .category-badge {
   padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: capitalize;
-  background-color: rgba(100, 116, 139, 0.1);
-  color: var(--text-main);
-  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: rgba(148, 163, 184, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .type-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  gap: 6px;
+  font-size: 0.725rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
-.type-badge.income { color: var(--success); }
-.type-badge.expense { color: var(--danger); }
+.type-badge.income { color: var(--success); background: var(--success-bg); padding: 4px 10px; border-radius: 4px; }
+.type-badge.expense { color: var(--text-secondary); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 4px; }
 
 .amount {
   font-weight: 700;
@@ -234,6 +236,7 @@
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-color);
 }
+
 
 @media (max-width: 768px) {
   .filter-bar {

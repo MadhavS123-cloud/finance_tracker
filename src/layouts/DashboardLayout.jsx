@@ -6,6 +6,7 @@ import Transactions from '../components/Transactions/Transactions';
 import Insights from '../components/Insights/Insights';
 import Reports from '../components/Reports/Reports';
 import Settings from '../components/Settings/Settings';
+import HelpCenter from '../components/HelpCenter/HelpCenter';
 import { transactions } from '../data/mockData';
 
 const DashboardLayout = ({ 
@@ -13,6 +14,7 @@ const DashboardLayout = ({
   isSidebarCollapsed, setIsSidebarCollapsed, 
   theme, toggleTheme, logout 
 }) => {
+  const [isHelpOpen, setIsHelpOpen] = React.useState(false);
   const getPageTitle = () => {
     switch(activeTab) {
       case 'dashboard': return 'Financial Overview';
@@ -53,6 +55,7 @@ const DashboardLayout = ({
         setIsCollapsed={setIsSidebarCollapsed} 
         activeTab={activeTab}
         setActiveTab={setActiveTab}
+        onHelpClick={() => setIsHelpOpen(true)}
       />
       
       <main className="main-layout">
@@ -69,6 +72,8 @@ const DashboardLayout = ({
           {renderContent()}
         </div>
       </main>
+
+      <HelpCenter isOpen={isHelpOpen} onClose={() => setIsHelpOpen(false)} />
     </div>
   );
 };

@@ -1,22 +1,22 @@
 export const summaryData = {
   totalBalance: {
-    amount: 54200.5,
-    trend: 12.5,
+    amount: 142500.00,
+    trend: 14.2,
     icon: 'Wallet'
   },
-  totalIncome: {
-    amount: 12500.0,
+  monthlyIncome: {
+    amount: 12500.00,
     trend: 8.2,
     icon: 'ArrowUpRight'
   },
-  totalExpenses: {
-    amount: 4300.2,
-    trend: -5.4,
+  monthlyExpenses: {
+    amount: 3240.50,
+    trend: -12.0,
     icon: 'ArrowDownRight'
   },
-  totalSavings: {
-    amount: 8199.8,
-    trend: 15.1,
+  savingsRate: {
+    amount: 74.1,
+    trend: 5.4,
     icon: 'PiggyBank'
   }
 };
@@ -134,11 +134,12 @@ export const balanceHistory = [
 ];
 
 export const expenseByCategory = [
-  { name: 'Food', value: 1200, color: '#4f46e5' },
-  { name: 'Shopping', value: 2500, color: '#10b981' },
-  { name: 'Bills', value: 3800, color: '#f59e0b' },
-  { name: 'Entertainment', value: 800, color: '#ef4444' },
-  { name: 'Travel', value: 1500, color: '#8b5cf6' }
+  { name: 'Housing', value: 2400, color: '#00D4AA' },
+  { name: 'Food', value: 800, color: '#10B981' },
+  { name: 'Transport', value: 450, color: '#0EA5E9' },
+  { name: 'Entertainment', value: 300, color: '#38BDF8' },
+  { name: 'Health', value: 150, color: '#2DD4BF' },
+  { name: 'Others', value: 200, color: '#94A3B8' }
 ];
 
 export const incomeVsExpenses = [

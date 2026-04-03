@@ -12,14 +12,14 @@ function App() {
   const [role, setRole] = useState('admin');
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('finance_theme') || 'dark';
+  });
 
   // Persistence
   useEffect(() => {
     const savedRole = localStorage.getItem('finance_role');
-    const savedTheme = localStorage.getItem('finance_theme');
     if (savedRole) setRole(savedRole);
-    if (savedTheme) setTheme(savedTheme);
   }, []);
 
   useEffect(() => {

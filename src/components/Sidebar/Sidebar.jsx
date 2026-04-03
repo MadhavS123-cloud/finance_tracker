@@ -1,8 +1,8 @@
 import React from 'react';
-import { Home, List, PieChart, BarChart2, Settings, ChevronLeft, ChevronRight, Menu } from 'lucide-react';
+import { Home, List, PieChart, BarChart2, Settings, ChevronLeft, ChevronRight, HelpCircle } from 'lucide-react';
 import './Sidebar.css';
 
-const Sidebar = ({ isCollapsed, setIsCollapsed, activeTab, setActiveTab }) => {
+const Sidebar = ({ isCollapsed, setIsCollapsed, activeTab, setActiveTab, onHelpClick }) => {
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: <Home size={20} /> },
     { id: 'transactions', label: 'Transactions', icon: <List size={20} /> },
@@ -43,9 +43,8 @@ const Sidebar = ({ isCollapsed, setIsCollapsed, activeTab, setActiveTab }) => {
       </nav>
 
       <div className="sidebar-footer">
-        {/* Help button or similar */}
-        <button className="nav-item">
-          <span className="icon">?</span>
+        <button className="nav-item help-btn" onClick={onHelpClick}>
+          <span className="icon"><HelpCircle size={20} /></span>
           {!isCollapsed && <span className="label">Help Center</span>}
         </button>
       </div>

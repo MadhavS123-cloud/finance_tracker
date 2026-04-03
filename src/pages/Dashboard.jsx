@@ -7,73 +7,59 @@ import { summaryData, balanceHistory, expenseByCategory, incomeVsExpenses, trans
 import { Calendar, Download, RefreshCw, ArrowUpRight, Send, Plus, CreditCard } from 'lucide-react';
 import './Dashboard.css';
 
-const DashboardHeroCard = () => (
-  <div className="dashboard-hero-card hover-lift">
-    <div className="dhc-left">
-      <div className="dhc-header">
-        <span className="dhc-label">Total Portfolio Value</span>
-        <span className="dhc-badge">+14.2% This Month</span>
-      </div>
-      <h1 className="dhc-balance">$142,500.00</h1>
-      <p className="dhc-subtitle">You spent $3,240.50 so far this month, which is 12% lower than standard projections.</p>
-      <div className="dhc-actions">
-        <button className="btn-primary"><Send size={16}/> Transfer Funds</button>
-        <button className="btn-secondary"><Plus size={16}/> Add Account</button>
-      </div>
-    </div>
-    <div className="dhc-right">
-      {/* We could place a mini sparkline here, for now a stylistic radial / abstract shape representing wealth */}
-      <div className="abstract-wealth-indicator">
-        <div className="awi-ring outer"></div>
-        <div className="awi-ring inner"></div>
-        <div className="awi-center"><CreditCard /></div>
-      </div>
-    </div>
-  </div>
-);
-
 const Dashboard = ({ role }) => {
   return (
     <div className="dashboard-content">
       {/* Overview Action Bar */}
       <div className="dashboard-overview-header animate-slide-up">
         <div className="overview-title-group">
-          <h2 className="overview-title">Welcome back, Alex.</h2>
-          <p className="overview-subtitle">Here is your financial briefing for today.</p>
+          <p className="overview-pretitle">{new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <h2 className="overview-title">Welcome back, <span className="text-gradient">Alex</span>.</h2>
+          <p className="overview-subtitle">Here's what's happening with your finances today.</p>
         </div>
         <div className="overview-actions">
            {role === 'admin' && (
-             <button className="btn-tertiary hover-lift">
+             <button className="btn-secondary hover-lift">
                <Download size={16} /> Export Reports
              </button>
            )}
-          <button className="btn-tertiary hover-lift">
-            <Calendar size={16} /> This Month
+          <button className="btn-primary hover-lift">
+            <Plus size={16} /> New Transaction
           </button>
         </div>
       </div>
 
-      {/* Hero & Supporting Stats Configuration (Asymmetrical) */}
-      <div className="top-metrics-grid animate-slide-up stagger-1">
-        <div className="hero-metric-section">
-          <DashboardHeroCard />
-        </div>
-        <div className="supporting-metrics-section">
-           <SummaryCard 
-            title="Monthly Income" 
-            amount={summaryData.totalIncome.amount} 
-            trend={summaryData.totalIncome.trend} 
-            icon="ArrowUpRight"
-            type="success"
-          />
-          <SummaryCard 
-            title="Monthly Expenses" 
-            amount={summaryData.totalExpenses.amount} 
-            trend={summaryData.totalExpenses.trend} 
-            icon="ArrowDownRight"
-            type="primary"
-          />
-        </div>
+      {/* 4 Summary Cards Grid */}
+      <div className="summary-metrics-grid animate-slide-up stagger-1">
+        <SummaryCard 
+          title="Total Balance" 
+          amount={summaryData.totalBalance.amount} 
+          trend={summaryData.totalBalance.trend} 
+          icon={summaryData.totalBalance.icon}
+          type="primary"
+        />
+        <SummaryCard 
+          title="Monthly Income" 
+          amount={summaryData.monthlyIncome.amount} 
+          trend={summaryData.monthlyIncome.trend} 
+          icon={summaryData.monthlyIncome.icon}
+          type="success"
+        />
+        <SummaryCard 
+          title="Monthly Expenses" 
+          amount={summaryData.monthlyExpenses.amount} 
+          trend={summaryData.monthlyExpenses.trend} 
+          icon={summaryData.monthlyExpenses.icon}
+          type="danger"
+        />
+        <SummaryCard 
+          title="Savings Rate" 
+          amount={summaryData.savingsRate.amount} 
+          trend={summaryData.savingsRate.trend} 
+          icon={summaryData.savingsRate.icon}
+          type="warning"
+          isPercentage={true}
+        />
       </div>
 
       {/* Analytics */}
@@ -81,7 +67,6 @@ const Dashboard = ({ role }) => {
         <Charts 
           balanceHistory={balanceHistory} 
           expenseByCategory={expenseByCategory} 
-          incomeVsExpenses={incomeVsExpenses} 
         />
       </div>
 
